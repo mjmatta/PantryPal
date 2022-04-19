@@ -13,15 +13,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.Set;
 
 @CrossOrigin(origins="http://localhost:3000/")
 @Controller
 public class RestController {
 
 	private final UserDetailsService uService;
+	private final FoodDetailsService fService;
 
-	public RestController(UserDetailsService uService) {
+	public RestController(UserDetailsService uService, FoodDetailsService fService) {
 		this.uService = uService;
+		this.fService = fService;
+	}
+
+	@RequestMapping(value="/myfood", method=RequestMethod.GET)
+	@ResponseBody
+	public Set<Food> getMyFood(Authentication authentication) {
+		return fService.getFood(((User)authentication.getPrincipal()).getId());
 	}
 
 	@RequestMapping(value="/myuser", method=RequestMethod.GET)

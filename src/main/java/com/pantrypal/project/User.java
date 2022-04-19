@@ -17,6 +17,9 @@ public class User implements UserDetails {
 	private String password;
 	private String role;
 
+	// @OneToMany(mappedBy = "food", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	// private Set<Food> foods;
+
 	public String getRole() {
 		return role;
 	}
