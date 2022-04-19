@@ -1,0 +1,2 @@
+# PantryPal
+Smart pantry application
