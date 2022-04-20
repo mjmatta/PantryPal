@@ -45,6 +45,8 @@ class FoodList extends Component {
         const foodList = foods.map(food => {
             return <tr>
                 <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
+                <td>{food.buy}</td>
+                <td>{food.exp}</td>
                 <td>{food.cal}</td>
                 <td>
                     <ButtonGroup>
@@ -65,9 +67,11 @@ class FoodList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="30%">Name</th>
-                            <th width="30%">Calories</th>
-                            <th width="40%">Actions</th>
+                            <th width="18%">Name</th>
+                            <th width="18%">Buy Date</th>
+                            <th width="18%">Expiration Date</th>
+                            <th width="18%">Calories</th>
+                            <th width="28%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>

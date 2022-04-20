@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -40,8 +44,18 @@ public class RestController {
 	@RequestMapping(value="/myfood", method=RequestMethod.POST)
 	@ResponseBody
 	public Food addFoodItem(@RequestBody Map<String, Object> payload, Authentication authentication) {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date buy = null;
+		Date exp = null;
+		try{
+			buy = formatter.parse((String)payload.get("buyDate"));
+			exp = formatter.parse((String)payload.get("expirationDate"));
+		}
+		catch(Exception ParseException) {
+			System.out.println();
+		}
 		System.out.println("New Food: " + (String)payload.get("name"));
-		Food food = fService.addFood((String)payload.get("name"), ((User)authentication.getPrincipal()));
+		Food food = fService.addFood((String)payload.get("name"), buy, exp, ((User)authentication.getPrincipal()));
 		return food;
 		// ModelAndView mav = new ModelAndView("redirect:/");
 		// return mav;

@@ -1,5 +1,6 @@
 package com.pantrypal.project;
 
+import java.util.Date;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,12 @@ public class FoodDetailsService {
         return foodRepository.getByUserId(id);
     }
 
-    public Food addFood(String name, User user) {
+    public Food addFood(String name, Date buyDate, Date expDate, User user) {
         Food food = new Food();
         food.setName(name);
         food.setUser(user);
+        food.setBuy(buyDate);
+        food.setExp(expDate);
         food.setCal(200);
         return foodRepository.save(food);
     }

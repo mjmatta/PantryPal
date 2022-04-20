@@ -1,5 +1,7 @@
 package com.pantrypal.project;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +15,12 @@ public class Food {
     private String name;
 
     private Integer calories;
+
+    @Temporal(TemporalType.DATE)
+    Date buyDate;
+
+    @Temporal(TemporalType.DATE)
+    Date expirationDate;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
@@ -58,5 +66,21 @@ public class Food {
 
     public void setUser(User u) {
         this.user=u;
+    }
+
+    public Date getBuy() {
+        return this.buyDate;
+    }
+
+    public void setBuy(Date d) {
+        this.buyDate = d;
+    }
+
+    public Date getExp() {
+        return this.expirationDate;
+    }
+
+    public void setExp(Date d) {
+        this.expirationDate = d;
     }
 }
