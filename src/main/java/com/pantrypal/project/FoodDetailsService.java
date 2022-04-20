@@ -17,12 +17,17 @@ public class FoodDetailsService {
         return foodRepository.getByUserId(id);
     }
 
-    public Food addFood(String name, Date buyDate, Date expDate, User user) {
+    public Set<Food> getCategory(Integer id, String c) {
+        return foodRepository.getByCategory(id, c);
+    }
+
+    public Food addFood(String name, Date buyDate, Date expDate, String category, User user) {
         Food food = new Food();
         food.setName(name);
         food.setUser(user);
         food.setBuy(buyDate);
         food.setExp(expDate);
+        food.setCategory(category);
         food.setCal(200);
         return foodRepository.save(food);
     }

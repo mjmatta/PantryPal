@@ -22,6 +22,8 @@ public class Food {
     @Temporal(TemporalType.DATE)
     Date expirationDate;
 
+    private String category;
+
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
     private User user;
@@ -82,5 +84,13 @@ public class Food {
 
     public void setExp(Date d) {
         this.expirationDate = d;
+    }
+
+    public String getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

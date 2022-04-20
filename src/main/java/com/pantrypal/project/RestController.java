@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -52,10 +53,11 @@ public class RestController {
 			exp = formatter.parse((String)payload.get("expirationDate"));
 		}
 		catch(Exception ParseException) {
-			System.out.println();
+			
 		}
 		System.out.println("New Food: " + (String)payload.get("name"));
-		Food food = fService.addFood((String)payload.get("name"), buy, exp, ((User)authentication.getPrincipal()));
+		System.out.println(payload);
+		Food food = fService.addFood((String)payload.get("name"), buy, exp, (String)payload.get("category"), ((User)authentication.getPrincipal()));
 		return food;
 		// ModelAndView mav = new ModelAndView("redirect:/");
 		// return mav;
@@ -63,8 +65,14 @@ public class RestController {
 
 	@RequestMapping(value="/myfood", method=RequestMethod.GET)
 	@ResponseBody
-	public Set<Food> getMyFood(Authentication authentication) {
-		return fService.getFood(((User)authentication.getPrincipal()).getId());
+	public ArrayList<Set<Food>> getMyFood(Authentication authentication) {
+		Integer uid = ((User)authentication.getPrincipal()).getId();
+		ArrayList<Set<Food>> a = new ArrayList<>();
+		a.add(fService.getCategory(uid, "Pantry"));
+		a.add(fService.getCategory(uid, "Fridge"));
+		a.add(fService.getCategory(uid, "Freezer"));
+		System.out.println(a);
+		return a;
 	}
 
 	@RequestMapping(value="/myuser", method=RequestMethod.GET)

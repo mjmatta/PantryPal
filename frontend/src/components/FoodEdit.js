@@ -76,6 +76,11 @@ class FoodEdit extends Component {
                                onChange={this.handleChange}/>
                         <Input type="date" name="expirationDate" id="expirationDate"
                                onChange={this.handleChange}/>
+                        <Input type="select" name="category" id="category" onChange={this.handleChange}>
+                            <option>Pantry</option>
+                            <option>Fridge</option>
+                            <option>Freezer</option>
+                        </Input>
                     </FormGroup>
                     {/* <FormGroup>
                         <Label for="email">Email</Label>

@@ -6,7 +6,6 @@ import FoodService from '../services/FoodService';
 class FoodList extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {food: []};
         //this.remove = this.remove.bind(this);
@@ -14,7 +13,7 @@ class FoodList extends Component {
     }
 
     componentDidMount() { 
-        FoodService.getFood().then((res) => {this.setState({food: res.data})})
+        FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
     }
 
     // async remove(id) {
@@ -30,9 +29,34 @@ class FoodList extends Component {
     //     });
     // }
 
-    remove(id) {
+    remove(id, category) {
+        var i = 0;
+        switch(category) {
+            case "Pantry":
+                i=0;
+                break;
+            case "Fridge":
+                i=1;
+                break;
+            case "Freezer":
+                i=2;
+                break;
+        }
         FoodService.deleteFood(id);
-        this.setState({food: this.state.food.filter(food => food.id !== id)});
+        console.log("Deleting food " + category);
+      //  this.setState({food: this.state.food.filter(food => food.id !== id)});
+        this.setState(() => {
+
+            var newState = []
+            for (let j = 0; j < 3; j++) {
+                if(i == j) {
+                    newState.push(this.state.food[j].filter(f => f.id !== id));
+                } else {
+                    newState.push(this.state.food[j]);
+                }
+            }
+            this.setState({food: newState});
+        });
     }
 
     addEmployee(){
@@ -40,22 +64,60 @@ class FoodList extends Component {
     }
 
     render() {
-
+        
         const foods = this.state.food;
-        const foodList = foods.map(food => {
-            return <tr>
-                <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                <td>{food.buy}</td>
-                <td>{food.exp}</td>
-                <td>{food.cal}</td>
-                <td>
-                    <ButtonGroup>
-                        <Button size="sm" color="primary">Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(food.id)}>Delete</Button>
-                    </ButtonGroup>
-                </td>
-            </tr>
-        });
+        console.log(foods)
+        var pantryList = null;
+        var fridgeList = null;
+        var freezerList = null;
+        if(!(foods[0] === undefined || foods[0].length == 0)) {
+            pantryList = foods[0].map(food => {
+                    return <tr>
+                        <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
+                        <td>{food.buy}</td>
+                        <td>{food.exp}</td>
+                        <td>{food.cal}</td>
+                        <td>
+                            <ButtonGroup>
+                                <Button size="sm" color="primary">Edit</Button>
+                                <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
+                            </ButtonGroup>
+                        </td>
+                    </tr>
+            });
+        }
+        if(!(foods[1] === undefined || foods[1].length == 0)) {
+            fridgeList = foods[1].map(food => {
+                return <tr>
+                    <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
+                    <td>{food.buy}</td>
+                    <td>{food.exp}</td>
+                    <td>{food.cal}</td>
+                    <td>
+                        <ButtonGroup>
+                            <Button size="sm" color="primary">Edit</Button>
+                            <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
+                        </ButtonGroup>
+                    </td>
+                </tr>
+            });
+        }  
+        if(!(foods[2] === undefined || foods[2].length == 0)) {
+            freezerList = foods[2].map(food => {
+                return <tr>
+                    <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
+                    <td>{food.buy}</td>
+                    <td>{food.exp}</td>
+                    <td>{food.cal}</td>
+                    <td>
+                        <ButtonGroup>
+                            <Button size="sm" color="primary">Edit</Button>
+                            <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
+                        </ButtonGroup>
+                    </td>
+                </tr>
+            });
+        }
 
         return (
             <div>
@@ -63,7 +125,7 @@ class FoodList extends Component {
                     <div className="float-right">
                         <Button color="success" onClick={this.addEmployee}>Add Food</Button>
                     </div>
-                    <h3>Food</h3>
+                    <h3>Your Food</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
@@ -75,7 +137,12 @@ class FoodList extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {foodList}
+                        <h4>Pantry</h4>
+                        {pantryList}
+                        <h4>Fridge</h4>
+                        {fridgeList}
+                        <h4>Freezer</h4>
+                        {freezerList}
                         </tbody>
                     </Table>
                 </Container>
