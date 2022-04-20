@@ -10,6 +10,7 @@ class FoodList extends Component {
         super(props);
         this.state = {food: []};
         //this.remove = this.remove.bind(this);
+        this.addEmployee = this.addEmployee.bind(this);
     }
 
     componentDidMount() { 
@@ -28,6 +29,10 @@ class FoodList extends Component {
     //         this.setState({clients: updatedClients});
     //     });
     // }
+
+    addEmployee(){
+        this.props.history.push('/myfood/_add');
+    }
 
     render() {
 
@@ -49,7 +54,7 @@ class FoodList extends Component {
             <div>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success">Add Food</Button>
+                        <Button color="success" onClick={this.addEmployee}>Add Food</Button>
                     </div>
                     <h3>Food</h3>
                     <Table className="mt-4">

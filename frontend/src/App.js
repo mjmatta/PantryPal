@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios'
 import UserService from './services/UserService';
 import FoodList from './components/FoodList';
+import FoodEdit from './components/FoodEdit';
 
 class App extends Component {
   
@@ -23,7 +24,14 @@ class App extends Component {
       <h2>
         What's up {this.state.user}. Welcome.
       </h2>
-      <FoodList/>
+
+      <Router>
+      <Switch>
+        <Route path='/' exact={true} component={FoodList}/>
+        <Route path='/myfood' exact={true} component={FoodList}/>
+        <Route path='/myfood/:id' component={FoodEdit}/>
+      </Switch>
+      </Router>
       </div>
     )
   }

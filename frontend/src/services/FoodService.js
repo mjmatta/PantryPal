@@ -9,6 +9,11 @@ class FoodService {
         return axios.get(USER_URL);
     }
 
+    createFood(food) {
+        console.log(food);
+        axios.post(USER_URL, food);
+    }
+
 }
 
 export default new FoodService();

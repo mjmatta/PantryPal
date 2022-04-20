@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 import java.util.Set;
 
 @CrossOrigin(origins="http://localhost:3000/")
@@ -25,6 +28,16 @@ public class RestController {
 	public RestController(UserDetailsService uService, FoodDetailsService fService) {
 		this.uService = uService;
 		this.fService = fService;
+	}
+
+	@RequestMapping(value="/myfood", method=RequestMethod.POST)
+	@ResponseBody
+	public Food addFoodItem(@RequestBody Map<String, Object> payload, Authentication authentication) {
+		System.out.println("New Food: " + (String)payload.get("name"));
+		Food food = fService.addFood((String)payload.get("name"), ((User)authentication.getPrincipal()));
+		return food;
+		// ModelAndView mav = new ModelAndView("redirect:/");
+		// return mav;
 	}
 
 	@RequestMapping(value="/myfood", method=RequestMethod.GET)
