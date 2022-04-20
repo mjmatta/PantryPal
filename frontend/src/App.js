@@ -3,31 +3,27 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios'
 import UserService from './services/UserService';
-import FoodService from './services/FoodService';
+import FoodList from './components/FoodList';
 
 class App extends Component {
-
-
   
   state = {
     user: "",
     food: []
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     UserService.getUser().then((res) => {this.setState({user: res.data})})
-    FoodService.getFood().then((res) => {this.setState({food: res.data})})
   }
 
   render() {
+    console.log(this.state.food)
     return (
       <div>
       <h2>
         What's up {this.state.user}. Welcome.
       </h2>
-      <ul>
-        {this.state.food.map((f) => <li>{f.name}, {f.cal}</li>)}
-      </ul>
+      <FoodList/>
       </div>
     )
   }
