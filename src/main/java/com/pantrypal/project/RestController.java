@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,12 @@ public class RestController {
 	public RestController(UserDetailsService uService, FoodDetailsService fService) {
 		this.uService = uService;
 		this.fService = fService;
+	}
+
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteFoodItem(@PathVariable Integer id) {
+		fService.deleteFood(id);
 	}
 
 	@RequestMapping(value="/myfood", method=RequestMethod.POST)

@@ -23,4 +23,8 @@ public class FoodDetailsService {
         food.setCal(200);
         return foodRepository.save(food);
     }
+
+    public void deleteFood(Integer id) {
+        foodRepository.deleteById(id);
+    }
 }

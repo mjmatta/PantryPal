@@ -14,6 +14,10 @@ class FoodService {
         axios.post(USER_URL, food);
     }
 
+    deleteFood(id) {
+        axios.delete(USER_URL + "/" + id);
+    }
+
 }
 
 export default new FoodService();

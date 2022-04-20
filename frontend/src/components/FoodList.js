@@ -30,6 +30,11 @@ class FoodList extends Component {
     //     });
     // }
 
+    remove(id) {
+        FoodService.deleteFood(id);
+        this.setState({food: this.state.food.filter(food => food.id !== id)});
+    }
+
     addEmployee(){
         this.props.history.push('/myfood/_add');
     }
@@ -44,7 +49,7 @@ class FoodList extends Component {
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary">Edit</Button>
-                        <Button size="sm" color="danger" /*onClick={() => this.remove(client.id)}*/>Delete</Button>
+                        <Button size="sm" color="danger" onClick={() => this.remove(food.id)}>Delete</Button>
                     </ButtonGroup>
                 </td>
             </tr>
