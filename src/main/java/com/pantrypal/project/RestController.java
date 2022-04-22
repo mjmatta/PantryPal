@@ -44,9 +44,11 @@ public class RestController {
 
 	@RequestMapping(value="/myfood/{id}", method=RequestMethod.GET)
 	@ResponseBody
-	public Food getAFood(@PathVariable Integer id) {
+	public Food getAFood(@PathVariable Integer id, Authentication auth) {
 		System.out.println("Get food from Id: "+ id);
-		System.out.println(fService.getFoodById(id));
+		Food f = fService.getFoodById(id);
+		System.out.println(f.getName());
+		System.out.println(f.getId());
 		return fService.getFoodById(id);
 	}
 
