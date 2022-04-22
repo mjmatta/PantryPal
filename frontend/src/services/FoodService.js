@@ -11,7 +11,7 @@ class FoodService {
 
     getFoodById(id) {
         console.log("Getting food info from: " + id)
-        return axios.get(EDIT + "/" + id)
+        return axios.get(USER_URL + "/" + id)
     }
 
     createFood(food) {
@@ -20,7 +20,7 @@ class FoodService {
     }
 
     updateFood(id, data) {
-        axios.put(EDIT + "/" + id, data)
+        axios.put(USER_URL + "/" + id, data)
     }
 
     deleteFood(id) {

@@ -36,28 +36,6 @@ public class RestController {
 		this.fService = fService;
 	}
 
-	@RequestMapping(value="/myfood/{id}", method=RequestMethod.DELETE)
-	@ResponseBody
-	public void deleteFoodItem(@PathVariable Integer id) {
-		fService.deleteFood(id);
-	}
-
-	@RequestMapping(value="/food/{id}", method=RequestMethod.GET)
-	@ResponseBody
-	public Food getAFood(Authentication authentication, @PathVariable Integer id) {
-		System.out.println("Get food from Id: "+ id);
-		Food f = fService.getFoodById(id);
-		System.out.println(f.getName());
-		System.out.println(f.getId());
-		return fService.getFoodById(id);
-	}
-
-	@RequestMapping(value="/food/{id}", method=RequestMethod.PUT)
-	@ResponseBody
-	public void changeFood(@RequestBody Map<String, Object> payload) {
-		System.out.println("Change food request: " + payload);
-	}
-
 	@RequestMapping(value="/myfood", method=RequestMethod.POST)
 	@ResponseBody
 	public Food addFoodItem(@RequestBody Map<String, Object> payload, Authentication authentication) {
@@ -90,6 +68,28 @@ public class RestController {
 		System.out.println(a);
 		return a;
 	}
+
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteFoodItem(@PathVariable Integer id) {
+		fService.deleteFood(id);
+	}
+
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public Food getAFood(Authentication authentication, @PathVariable Integer id) {
+		System.out.println("Get food from Id: "+ id);
+		Food f = fService.getFoodById(id);
+		System.out.println(f.getName());
+		System.out.println(f.getId());
+		return fService.getFoodById(id);
+	}
+
+	// @RequestMapping(value="/myfood/{id}", method=RequestMethod.PUT)
+	// @ResponseBody
+	// public void changeFood(@RequestBody Map<String, Object> payload) {
+	// 	System.out.println("Change food request: " + payload);
+	// }
 
 	@RequestMapping(value="/myuser", method=RequestMethod.GET)
 	@ResponseBody
