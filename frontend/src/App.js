@@ -10,7 +10,8 @@ class App extends Component {
   
   state = {
     user: "",
-    food: []
+    food: [],
+    id: ''
   }
 
   componentDidMount() {

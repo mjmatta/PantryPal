@@ -7,11 +7,13 @@ import FoodService from '../services/FoodService';
 class FoodEdit extends Component {
 
     emptyItem = {
+        id: this.props.match.params.id,
         name: '',
     };
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             item: this.emptyItem
         };
