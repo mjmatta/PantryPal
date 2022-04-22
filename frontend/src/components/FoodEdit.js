@@ -61,7 +61,7 @@ class FoodEdit extends Component {
     render() {
         const {item} = this.state;
         console.log(item);
-        const title = <h2>{item.id ? 'Edit Client' : 'Add Client'}</h2>;
+        const title = <h2>{item.id ? 'Edit Food' : 'Add Food'}</h2>;
 
         return <div>
             <Container>
