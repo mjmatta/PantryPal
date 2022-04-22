@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-@CrossOrigin(origins="http://localhost:3000/")
+@CrossOrigin(origins="https://therealpantrypal.herokuapp.com:3000/")
 @Controller
 public class RestController {
 
