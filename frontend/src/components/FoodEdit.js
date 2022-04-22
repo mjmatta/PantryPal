@@ -25,9 +25,7 @@ class FoodEdit extends Component {
             return
         }else{
             FoodService.getFoodById(this.props.match.params.id).then( (res) =>{
-                console.log(res.data);
                 const f = res.data;
-                console.log(f);
                 this.setState({item: f});
             });
         }     
@@ -73,9 +71,9 @@ class FoodEdit extends Component {
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
-                        <Input type="date" name="buyDate" id="buyDate" value={item.buyDate || ''}
+                        <Input type="date" name="buyDate" id="buyDate" value={item.buy || ''}
                                onChange={this.handleChange}/>
-                        <Input type="date" name="expirationDate" id="expirationDate" value={item.expirationDate || ''}
+                        <Input type="date" name="expirationDate" id="expirationDate" value={item.exp || ''}
                                onChange={this.handleChange}/>
                         <Input type="select" name="category" id="category" value={item.category || ''} onChange={this.handleChange}>
                             <option>Pantry</option>
