@@ -59,6 +59,7 @@ class FoodEdit extends Component {
 
     render() {
         const {item} = this.state;
+        console.log(item);
         const title = <h2>{item.id ? 'Edit Client' : 'Add Client'}</h2>;
 
         return <div>
@@ -69,11 +70,11 @@ class FoodEdit extends Component {
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
-                        <Input type="date" name="buyDate" id="buyDate"
+                        <Input type="date" name="buyDate" id="buyDate" value={item.buy || ''}
                                onChange={this.handleChange}/>
-                        <Input type="date" name="expirationDate" id="expirationDate"
+                        <Input type="date" name="expirationDate" id="expirationDate" value={item.exp || ''}
                                onChange={this.handleChange}/>
-                        <Input type="select" name="category" id="category" onChange={this.handleChange}>
+                        <Input type="select" name="category" id="category" value={item.category || ''} onChange={this.handleChange}>
                             <option>Pantry</option>
                             <option>Fridge</option>
                             <option>Freezer</option>
