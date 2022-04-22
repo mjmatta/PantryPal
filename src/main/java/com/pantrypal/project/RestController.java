@@ -46,6 +46,7 @@ public class RestController {
 	@ResponseBody
 	public Food getAFood(@PathVariable Integer id) {
 		System.out.println("Get food from Id: "+ id);
+		System.out.println(fService.getFoodById(id));
 		return fService.getFoodById(id);
 	}
 

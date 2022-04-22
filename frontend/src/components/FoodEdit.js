@@ -22,7 +22,7 @@ class FoodEdit extends Component {
     }
 
     componentDidMount() {
-        if(this.state.id === '_add'){
+        if(this.props.match.params.id === '_add'){
             return
         }else{
             FoodService.getFoodById(this.props.match.params.id).then( (res) =>{
