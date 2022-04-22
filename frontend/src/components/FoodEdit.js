@@ -25,7 +25,7 @@ class FoodEdit extends Component {
         if(this.state.id === '_add'){
             return
         }else{
-            FoodService.getFoodById(this.state.id).then( (res) =>{
+            FoodService.getFoodById(this.props.match.params.id).then( (res) =>{
                 console.log(res.data)
                 let food = res.data;
                 this.setState({food});
