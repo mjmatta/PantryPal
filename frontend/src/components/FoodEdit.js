@@ -25,9 +25,10 @@ class FoodEdit extends Component {
             return
         }else{
             FoodService.getFoodById(this.props.match.params.id).then( (res) =>{
-                console.log(res.data)
-                let food = res.data;
-                this.setState({food});
+                console.log(res.data);
+                const f = res.data;
+                console.log(f);
+                this.setState({item: f});
             });
         }     
     }
