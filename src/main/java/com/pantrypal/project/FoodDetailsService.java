@@ -29,10 +29,10 @@ public class FoodDetailsService {
         Food food = new Food();
         food.setName(name);
         food.setUser(user);
-        food.setBuy(buyDate);
-        food.setExp(expDate);
+        food.setBuyDate(buyDate);
+        food.setExpirationDate(expDate);
         food.setCategory(category);
-        food.setCal(200);
+        food.setCalories(200);
         return foodRepository.save(food);
     }
 

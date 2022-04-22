@@ -40,18 +40,18 @@ public class RestController {
 	@ResponseBody
 	public Food addFoodItem(@RequestBody Map<String, Object> payload, Authentication authentication) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date buy = null;
-		Date exp = null;
+		Date buyDate = null;
+		Date expirationDate = null;
 		try{
-			buy = formatter.parse((String)payload.get("buyDate"));
-			exp = formatter.parse((String)payload.get("expirationDate"));
+			buyDate = formatter.parse((String)payload.get("buyDate"));
+			expirationDate = formatter.parse((String)payload.get("expirationDate"));
 		}
 		catch(Exception ParseException) {
 			
 		}
 		System.out.println("New Food: " + (String)payload.get("name"));
 		System.out.println(payload);
-		Food food = fService.addFood((String)payload.get("name"), buy, exp, (String)payload.get("category"), ((User)authentication.getPrincipal()));
+		Food food = fService.addFood((String)payload.get("name"), buyDate, expirationDate, (String)payload.get("category"), ((User)authentication.getPrincipal()));
 		return food;
 		// ModelAndView mav = new ModelAndView("redirect:/");
 		// return mav;

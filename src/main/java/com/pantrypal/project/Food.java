@@ -54,12 +54,12 @@ public class Food {
         this.name=name;
     }
 
-    public Integer getCal() {
+    public Integer getCalories() {
         return calories;
     }
 
-    public void setCal(Integer cal) {
-        this.calories=cal;
+    public void setCalories(Integer calories) {
+        this.calories=calories;
     }
 
     public User getUser() {
@@ -70,20 +70,20 @@ public class Food {
         this.user=u;
     }
 
-    public Date getBuy() {
+    public Date getBuyDate() {
         return this.buyDate;
     }
 
-    public void setBuy(Date d) {
-        this.buyDate = d;
+    public void setBuyDate(Date buyDate) {
+        this.buyDate = buyDate;
     }
 
-    public Date getExp() {
+    public Date getExpirationDate() {
         return this.expirationDate;
     }
 
-    public void setExp(Date d) {
-        this.expirationDate = d;
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public String getCategory() {
