@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const USER_URL = "https://therealpantrypal.herokuapp.com/myfood";
+const EDIT = "https://therealpantrypal.herokuapp.com/food";
 
 class FoodService {
     
@@ -10,7 +11,7 @@ class FoodService {
 
     getFoodById(id) {
         console.log("Getting food info from: " + id)
-        return axios.get(USER_URL + "/" + id)
+        return axios.get(EDIT + "/" + id)
     }
 
     createFood(food) {
@@ -19,7 +20,7 @@ class FoodService {
     }
 
     updateFood(id, data) {
-        axios.put(USER_URL + "/" + id, data)
+        axios.put(EDIT + "/" + id, data)
     }
 
     deleteFood(id) {

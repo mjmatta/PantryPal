@@ -42,7 +42,7 @@ public class RestController {
 		fService.deleteFood(id);
 	}
 
-	@RequestMapping(value="/myfood/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/food/{id}", method=RequestMethod.GET)
 	@ResponseBody
 	public Food getAFood(@PathVariable Integer id, Authentication auth) {
 		System.out.println("Get food from Id: "+ id);
@@ -52,7 +52,7 @@ public class RestController {
 		return fService.getFoodById(id);
 	}
 
-	@RequestMapping(value="/myfood/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/food/{id}", method=RequestMethod.PUT)
 	@ResponseBody
 	public void changeFood(@RequestBody Map<String, Object> payload) {
 		System.out.println("Change food request: " + payload);
