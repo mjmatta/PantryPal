@@ -17,11 +17,7 @@ class FoodList extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log(this.props.match.params.food);
-        console.log(prevProps.match.params.food);
-        if (this.props.match.params.food !== prevProps.match.params.food) {
-            FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
-        }
+        FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
     }
       
 
