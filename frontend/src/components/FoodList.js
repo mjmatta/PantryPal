@@ -17,10 +17,12 @@ class FoodList extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log(this.match.params.food);
+        console.log(prevProps.match.params.food);
         if (this.match.params.food !== prevProps.match.params.food) {
             FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
         }
-      }
+    }
       
 
     // async remove(id) {
