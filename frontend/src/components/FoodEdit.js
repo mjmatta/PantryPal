@@ -71,9 +71,9 @@ class FoodEdit extends Component {
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
-                        <Input type="date" name="buyDate" id="buyDate" value={item.buy || ''}
+                        <Input type="date" name="buyDate" id="buyDate" value={item.buyDate || ''}
                                onChange={this.handleChange}/>
-                        <Input type="date" name="expirationDate" id="expirationDate" value={item.exp || ''}
+                        <Input type="date" name="expirationDate" id="expirationDate" value={item.expirationDate || ''}
                                onChange={this.handleChange}/>
                         <Input type="select" name="category" id="category" value={item.category || ''} onChange={this.handleChange}>
                             <option>Pantry</option>

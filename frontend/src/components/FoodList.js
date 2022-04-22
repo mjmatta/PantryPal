@@ -78,9 +78,9 @@ class FoodList extends Component {
             pantryList = foods[0].map(food => {
                     return <tr>
                         <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                        <td>{food.buy}</td>
-                        <td>{food.exp}</td>
-                        <td>{food.cal}</td>
+                        <td>{food.buyDate}</td>
+                        <td>{food.expirationDate}</td>
+                        <td>{food.calories}</td>
                         <td>
                             <ButtonGroup>
                                 <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
@@ -94,8 +94,8 @@ class FoodList extends Component {
             fridgeList = foods[1].map(food => {
                 return <tr>
                     <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                    <td>{food.buy}</td>
-                    <td>{food.exp}</td>
+                    <td>{food.buyDate}</td>
+                    <td>{food.expirationDate}</td>
                     <td>{food.cal}</td>
                     <td>
                         <ButtonGroup>
@@ -110,8 +110,8 @@ class FoodList extends Component {
             freezerList = foods[2].map(food => {
                 return <tr>
                     <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                    <td>{food.buy}</td>
-                    <td>{food.exp}</td>
+                    <td>{food.buyDate}</td>
+                    <td>{food.expirationDate}</td>
                     <td>{food.cal}</td>
                     <td>
                         <ButtonGroup>
