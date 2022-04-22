@@ -9,6 +9,7 @@ class FoodService {
     }
 
     getFoodById(id) {
+        console.log("Getting food info from: " + id)
         return axios.get(USER_URL + "/" + id)
     }
 
