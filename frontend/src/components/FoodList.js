@@ -16,6 +16,13 @@ class FoodList extends Component {
         FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.match.params.food !== prevProps.match.params.food) {
+            FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
+        }
+      }
+      
+
     // async remove(id) {
     //     await fetch(`/clients/${id}`, {
     //         method: 'DELETE',

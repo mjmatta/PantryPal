@@ -27,7 +27,7 @@ class App extends Component {
 
       <Router>
       <Switch>
-        <Route path='/' exact={true} component={FoodList} key={window.location.pathname}/>
+        <Route path='/' exact={true} component={FoodList}/>
         <Route path='/myfood' exact={true} component={FoodList}/>
         <Route path='/myfood/:id' component={FoodEdit}/>
       </Switch>
