@@ -16,6 +16,19 @@ class FoodList extends Component {
         FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
     }
 
+    // async remove(id) {
+    //     await fetch(`/clients/${id}`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }).then(() => {
+    //         let updatedClients = [...this.state.clients].filter(i => i.id !== id);
+    //         this.setState({clients: updatedClients});
+    //     });
+    // }
+
     remove(id, category) {
         var i = 0;
         switch(category) {
