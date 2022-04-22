@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USER_URL = "http://localhost:8080/myfood";
+const USER_URL = "http://therealpantrypal.herokuapp.com/myfood";
 
 class FoodService {
     
