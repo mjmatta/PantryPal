@@ -85,11 +85,27 @@ public class RestController {
 		return fService.getFoodById(id);
 	}
 
-	// @RequestMapping(value="/myfood/{id}", method=RequestMethod.PUT)
-	// @ResponseBody
-	// public void changeFood(@RequestBody Map<String, Object> payload) {
-	// 	System.out.println("Change food request: " + payload);
-	// }
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.PUT)
+	@ResponseBody
+	public void changeFood(@PathVariable Integer id, @RequestBody Map<String, Object> payload) {
+		System.out.println("Change food request: " + payload);
+		Food old = fService.getFoodById(id);
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date buyDate = null;
+		Date expirationDate = null;
+		try{
+			buyDate = formatter.parse((String)payload.get("buyDate"));
+			expirationDate = formatter.parse((String)payload.get("expirationDate"));
+		}
+		catch(Exception ParseException) {
+			
+		}
+		old.setName((String)payload.get("name"));
+		old.setCategory((String)payload.get("category"));
+		old.setBuyDate(buyDate);
+		old.setExpirationDate(expirationDate);
+		fService.updateFood(old);
+	}
 
 	@RequestMapping(value="/myuser", method=RequestMethod.GET)
 	@ResponseBody

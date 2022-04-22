@@ -25,6 +25,10 @@ public class FoodDetailsService {
         return foodRepository.getById(id);
     }
 
+    public void updateFood(Food f) {
+        foodRepository.save(f);
+    }
+
     public Food addFood(String name, Date buyDate, Date expDate, String category, User user) {
         Food food = new Food();
         food.setName(name);

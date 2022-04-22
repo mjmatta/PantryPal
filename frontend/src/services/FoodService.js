@@ -20,7 +20,8 @@ class FoodService {
     }
 
     updateFood(id, data) {
-        axios.put(USER_URL + "/" + id, data)
+        console.log("Updating food at index " + id + " with data: " + data);
+        axios.put(USER_URL + "/" + id, data);
     }
 
     deleteFood(id) {

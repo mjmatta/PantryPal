@@ -54,7 +54,7 @@ class FoodEdit extends Component {
         // });
         // this.props.history.push('/clients');
         console.log(item);
-        FoodService.createFood(item)
+        item.id ? FoodService.updateFood(item.id, item) : FoodService.createFood(item);
         this.props.history.push("/")
     }
 
