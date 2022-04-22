@@ -12,7 +12,7 @@ class FoodList extends Component {
         this.addEmployee = this.addEmployee.bind(this);
     }
 
-    componentWillMount() { 
+    componentDidMount() { 
         FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
     }
 
