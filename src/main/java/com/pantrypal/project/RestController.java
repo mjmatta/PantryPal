@@ -75,7 +75,7 @@ public class RestController {
 		fService.deleteFood(id);
 	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.GET)
 	@ResponseBody
 	public Food getAFood(@PathVariable Integer id) {
 		System.out.println("Get food from Id: "+ id);
