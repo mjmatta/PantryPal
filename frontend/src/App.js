@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div>
       <h2>
-        What's up {this.state.user}. Welcome.
+        What's up {this.state.user}. Welcome!
       </h2>
 
       <Router>
