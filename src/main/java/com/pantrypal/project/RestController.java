@@ -42,6 +42,18 @@ public class RestController {
 		fService.deleteFood(id);
 	}
 
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public Food getAFood(@PathVariable Integer id, Authentication authentication) {
+		return fService.getFoodById(id);
+	}
+
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.PUT)
+	@ResponseBody
+	public void changeFood(@RequestBody Map<String, Object> payload) {
+		System.out.println("Change food request: " + payload);
+	}
+
 	@RequestMapping(value="/myfood", method=RequestMethod.POST)
 	@ResponseBody
 	public Food addFoodItem(@RequestBody Map<String, Object> payload, Authentication authentication) {

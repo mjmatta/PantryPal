@@ -8,9 +8,17 @@ class FoodService {
         return axios.get(USER_URL);
     }
 
+    getFoodById(id) {
+        return axios.get(USER_URL + "/" + id)
+    }
+
     createFood(food) {
         console.log(food);
         axios.post(USER_URL, food);
+    }
+
+    updateFood(id, data) {
+        axios.put(USER_URL + "/" + id, data)
     }
 
     deleteFood(id) {

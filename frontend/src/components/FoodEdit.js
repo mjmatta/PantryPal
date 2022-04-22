@@ -19,19 +19,16 @@ class FoodEdit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentDidMount() {
-    //     if(this.state.id === '_add'){
-    //         return
-    //     }else{
-    //         FoodService.getEmployeeById(this.state.id).then( (res) =>{
-    //             let employee = res.data;
-    //             this.setState({firstName: employee.firstName,
-    //                 lastName: employee.lastName,
-    //                 emailId : employee.emailId
-    //             });
-    //         });
-    //     }     
-    // }
+    componentDidMount() {
+        if(this.state.id === '_add'){
+            return
+        }else{
+            FoodService.getFoodById(this.state.id).then( (res) =>{
+                let food = res.data;
+                this.setState({food});
+            });
+        }     
+    }
 
     handleChange(event) {
         const target = event.target;

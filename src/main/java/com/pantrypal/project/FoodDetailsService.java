@@ -21,6 +21,10 @@ public class FoodDetailsService {
         return foodRepository.getByCategory(id, c);
     }
 
+    public Food getFoodById(Integer id) {
+        return foodRepository.getById(id);
+    }
+
     public Food addFood(String name, Date buyDate, Date expDate, String category, User user) {
         Food food = new Food();
         food.setName(name);

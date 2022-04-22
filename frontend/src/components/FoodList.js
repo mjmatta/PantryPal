@@ -63,6 +63,10 @@ class FoodList extends Component {
         this.props.history.push('/myfood/_add');
     }
 
+    edit(i) {
+        this.props.history.push('/myfood/' + i)
+    }
+
     render() {
         
         const foods = this.state.food;
@@ -79,7 +83,7 @@ class FoodList extends Component {
                         <td>{food.cal}</td>
                         <td>
                             <ButtonGroup>
-                                <Button size="sm" color="primary">Edit</Button>
+                                <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
                                 <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
                             </ButtonGroup>
                         </td>
@@ -95,7 +99,7 @@ class FoodList extends Component {
                     <td>{food.cal}</td>
                     <td>
                         <ButtonGroup>
-                            <Button size="sm" color="primary">Edit</Button>
+                            <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
                             <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
                         </ButtonGroup>
                     </td>
@@ -111,7 +115,7 @@ class FoodList extends Component {
                     <td>{food.cal}</td>
                     <td>
                         <ButtonGroup>
-                            <Button size="sm" color="primary">Edit</Button>
+                            <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
                             <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
                         </ButtonGroup>
                     </td>
