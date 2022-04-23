@@ -112,7 +112,7 @@ class FoodList extends Component {
                     <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
                     <td>{food.buyDate}</td>
                     <td>{food.expirationDate}</td>
-                    <td>{food.calories}</td>
+                    <td>{food.cal}</td>
                     <td>
                         <ButtonGroup>
                             <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
@@ -128,6 +128,7 @@ class FoodList extends Component {
                 <Container fluid>
                     <div className="float-right">
                         <Button color="success" onClick={this.addEmployee}>Add Food</Button>
+                        <Button color="secondary" onClick={() => {this.props.history.push("/logout")}}>Logout</Button>
                     </div>
                     <h3>Your Food</h3>
                     <Table className="mt-4">
