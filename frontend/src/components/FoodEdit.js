@@ -44,7 +44,7 @@ class FoodEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
     
-        item.id ? FoodService.updateFood(item.id, item).then(this.props.history.push("/")) : FoodService.createFood(item).then(this.props.history.push("/"));
+        item.id ? FoodService.updateFood(item.id, item).then((res)=>{this.props.history.push("/");}) : FoodService.createFood(item).then((res)=>{this.props.history.push("/");});
     }
 
     render() {
