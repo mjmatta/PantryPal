@@ -44,16 +44,6 @@ class FoodEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
     
-        // await fetch('/clients' + (item.id ? '/' + item.id : ''), {
-        //     method: (item.id) ? 'PUT' : 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(item),
-        // });
-        // this.props.history.push('/clients');
-        console.log(item);
         item.id ? FoodService.updateFood(item.id, item) : FoodService.createFood(item);
         this.props.history.push("/")
     }
