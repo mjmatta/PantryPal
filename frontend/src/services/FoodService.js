@@ -16,16 +16,16 @@ class FoodService {
 
     createFood(food) {
         console.log(food);
-        axios.post(USER_URL, food);
+        return axios.post(USER_URL, food);
     }
 
     updateFood(id, data) {
         console.log("Updating food at index " + id + " with data: " + data);
-        axios.put(USER_URL + "/" + id, data);
+        return axios.put(USER_URL + "/" + id, data);
     }
 
     deleteFood(id) {
-        axios.delete(USER_URL + "/" + id);
+        return axios.delete(USER_URL + "/" + id);
     }
 
 }
