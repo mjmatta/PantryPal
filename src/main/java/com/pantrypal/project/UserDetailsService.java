@@ -26,6 +26,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
 	}
 
+	//registers new user as ROLE_USER and hashes password
 	public User registerUser(String login, String password) {
 		if (login == null || password == null) {
 			return null;
@@ -41,6 +42,8 @@ public class UserDetailsService implements org.springframework.security.core.use
 		}
 	}
 
+
+	//authenticate function for logging in users
 	public User authenticate(String login, String password) {
 		return repository.findByUsername(login);
 	}
