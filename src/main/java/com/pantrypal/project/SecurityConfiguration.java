@@ -23,7 +23,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return delPasswordEncoder;
 	}
 
-
+	//Security config. Demonstrates reserving pages for admin only (feature not in use).
+	//Only users can view page, but anyone can view login/register pages
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 

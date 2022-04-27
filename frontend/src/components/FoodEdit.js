@@ -12,6 +12,7 @@ class FoodEdit extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             item: this.emptyItem
         };
@@ -19,19 +20,16 @@ class FoodEdit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    // componentDidMount() {
-    //     if(this.state.id === '_add'){
-    //         return
-    //     }else{
-    //         FoodService.getEmployeeById(this.state.id).then( (res) =>{
-    //             let employee = res.data;
-    //             this.setState({firstName: employee.firstName,
-    //                 lastName: employee.lastName,
-    //                 emailId : employee.emailId
-    //             });
-    //         });
-    //     }     
-    // }
+    componentDidMount() {
+        if(this.props.match.params.id === '_add'){
+            return
+        }else{
+            FoodService.getFoodById(this.props.match.params.id).then( (res) =>{
+                const f = res.data;
+                this.setState({item: f});
+            });
+        }     
+    }
 
     handleChange(event) {
         const target = event.target;
@@ -46,23 +44,13 @@ class FoodEdit extends Component {
         event.preventDefault();
         const {item} = this.state;
     
-        // await fetch('/clients' + (item.id ? '/' + item.id : ''), {
-        //     method: (item.id) ? 'PUT' : 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(item),
-        // });
-        // this.props.history.push('/clients');
-        console.log(item);
-        FoodService.createFood(item)
-        this.props.history.push("/")
+        item.id ? FoodService.updateFood(item.id, item).then(()=>{this.props.history.push("/");}) : FoodService.createFood(item).then(()=>{this.props.history.push("/");});
     }
 
     render() {
         const {item} = this.state;
-        const title = <h2>{item.id ? 'Edit Client' : 'Add Client'}</h2>;
+        console.log(item);
+        const title = <h2>{item.id ? 'Edit Food' : 'Add Food'}</h2>;
 
         return <div>
             <Container>
@@ -72,11 +60,11 @@ class FoodEdit extends Component {
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
-                        <Input type="date" name="buyDate" id="buyDate"
+                        <Input type="date" name="buyDate" id="buyDate" value={item.buyDate || ''}
                                onChange={this.handleChange}/>
-                        <Input type="date" name="expirationDate" id="expirationDate"
+                        <Input type="date" name="expirationDate" id="expirationDate" value={item.expirationDate || ''}
                                onChange={this.handleChange}/>
-                        <Input type="select" name="category" id="category" onChange={this.handleChange}>
+                        <Input type="select" name="category" id="category" value={item.category || ''} onChange={this.handleChange}>
                             <option>Pantry</option>
                             <option>Fridge</option>
                             <option>Freezer</option>

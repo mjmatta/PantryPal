@@ -13,6 +13,7 @@ public class PantryPalApplication {
 		SpringApplication.run(PantryPalApplication.class, args);
 	}
 
+    //Snippet to allow local react app to interact with local rest controller
 	@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

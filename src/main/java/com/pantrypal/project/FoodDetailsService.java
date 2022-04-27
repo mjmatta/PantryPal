@@ -21,14 +21,22 @@ public class FoodDetailsService {
         return foodRepository.getByCategory(id, c);
     }
 
+    public Food getFoodById(Integer id) {
+        return foodRepository.getById(id);
+    }
+
+    public void updateFood(Food f) {
+        foodRepository.save(f);
+    }
+
     public Food addFood(String name, Date buyDate, Date expDate, String category, User user) {
         Food food = new Food();
         food.setName(name);
         food.setUser(user);
-        food.setBuy(buyDate);
-        food.setExp(expDate);
+        food.setBuyDate(buyDate);
+        food.setExpirationDate(expDate);
         food.setCategory(category);
-        food.setCal(200);
+        food.setCalories(200);
         return foodRepository.save(food);
     }
 

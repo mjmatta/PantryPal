@@ -9,6 +9,9 @@ public interface FoodRepository extends  JpaRepository<Food, Integer>{
 
 	public Set<Food> getByUserId(Integer id);
 
+	@Query(value="SELECT * FROM food_table WHERE id = ?1", nativeQuery = true)
+	public Food getById(Integer id);
+
 	public void deleteById(Integer id);
 
 	@Query(value="SELECT * FROM food_table WHERE user_id = ?1 AND category = ?2", nativeQuery = true)

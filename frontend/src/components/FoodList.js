@@ -16,19 +16,6 @@ class FoodList extends Component {
         FoodService.getFood().then((res) => {this.setState({food: res.data}, () => {console.log(this.state.food)})});
     }
 
-    // async remove(id) {
-    //     await fetch(`/clients/${id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then(() => {
-    //         let updatedClients = [...this.state.clients].filter(i => i.id !== id);
-    //         this.setState({clients: updatedClients});
-    //     });
-    // }
-
     remove(id, category) {
         var i = 0;
         switch(category) {
@@ -63,6 +50,10 @@ class FoodList extends Component {
         this.props.history.push('/myfood/_add');
     }
 
+    edit(i) {
+        this.props.history.push('/myfood/' + i)
+    }
+
     render() {
         
         const foods = this.state.food;
@@ -74,12 +65,12 @@ class FoodList extends Component {
             pantryList = foods[0].map(food => {
                     return <tr>
                         <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                        <td>{food.buy}</td>
-                        <td>{food.exp}</td>
-                        <td>{food.cal}</td>
+                        <td>{food.buyDate}</td>
+                        <td>{food.expirationDate}</td>
+                        <td>{food.calories}</td>
                         <td>
                             <ButtonGroup>
-                                <Button size="sm" color="primary">Edit</Button>
+                                <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
                                 <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
                             </ButtonGroup>
                         </td>
@@ -90,12 +81,12 @@ class FoodList extends Component {
             fridgeList = foods[1].map(food => {
                 return <tr>
                     <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                    <td>{food.buy}</td>
-                    <td>{food.exp}</td>
-                    <td>{food.cal}</td>
+                    <td>{food.buyDate}</td>
+                    <td>{food.expirationDate}</td>
+                    <td>{food.calories}</td>
                     <td>
                         <ButtonGroup>
-                            <Button size="sm" color="primary">Edit</Button>
+                            <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
                             <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
                         </ButtonGroup>
                     </td>
@@ -106,12 +97,12 @@ class FoodList extends Component {
             freezerList = foods[2].map(food => {
                 return <tr>
                     <td style={{whiteSpace: 'nowrap'}}>{food.name}</td>
-                    <td>{food.buy}</td>
-                    <td>{food.exp}</td>
-                    <td>{food.cal}</td>
+                    <td>{food.buyDate}</td>
+                    <td>{food.expirationDate}</td>
+                    <td>{food.calories}</td>
                     <td>
                         <ButtonGroup>
-                            <Button size="sm" color="primary">Edit</Button>
+                            <Button size="sm" color="primary" onClick={() => this.edit(food.id)}>Edit</Button>
                             <Button size="sm" color="danger" onClick={() => this.remove(food.id, food.category)}>Delete</Button>
                         </ButtonGroup>
                     </td>
@@ -124,6 +115,7 @@ class FoodList extends Component {
                 <Container fluid>
                     <div className="float-right">
                         <Button color="success" onClick={this.addEmployee}>Add Food</Button>
+                        <Button color="secondary" onClick={() => {this.props.history.push("/logout")}}>Logout</Button>
                     </div>
                     <h3>Your Food</h3>
                     <Table className="mt-4">

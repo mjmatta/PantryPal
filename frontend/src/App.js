@@ -10,7 +10,8 @@ class App extends Component {
   
   state = {
     user: "",
-    food: []
+    food: [],
+    id: ''
   }
 
   componentDidMount() {
@@ -21,7 +22,7 @@ class App extends Component {
     return (
       <div>
       <h2>
-        What's up {this.state.user}. Welcome.
+        What's up {this.state.user}. Welcome!
       </h2>
 
       <Router>
@@ -29,6 +30,10 @@ class App extends Component {
         <Route path='/' exact={true} component={FoodList}/>
         <Route path='/myfood' exact={true} component={FoodList}/>
         <Route path='/myfood/:id' component={FoodEdit}/>
+        <Route path='/logout' component={() => {
+          window.location.href = 'https://therealpantrypal.herokuapp.com/logout';
+          return null;
+        }}/>
       </Switch>
       </Router>
       </div>

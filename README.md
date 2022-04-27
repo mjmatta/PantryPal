@@ -1,7 +1,3 @@
-# PantryPal
-Smart pantry application
+# Continuous Deployment
 
-```
-./mvnw clean install
-./mvnw spring-boot:run
-```
+Push to this branch automatically pushes to [site](http://therealpantrypal.herokuapp.com/). CD through GitHub Actions.

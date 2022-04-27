@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-@CrossOrigin(origins="http://localhost:3000/")
+@CrossOrigin(origins="https://therealpantrypal.herokuapp.com:3000/")
 @Controller
 public class RestController {
 
@@ -36,33 +36,27 @@ public class RestController {
 		this.fService = fService;
 	}
 
-	@RequestMapping(value="/myfood/{id}", method=RequestMethod.DELETE)
-	@ResponseBody
-	public void deleteFoodItem(@PathVariable Integer id) {
-		fService.deleteFood(id);
-	}
-
+	//POST method for adding new food with User information
 	@RequestMapping(value="/myfood", method=RequestMethod.POST)
 	@ResponseBody
 	public Food addFoodItem(@RequestBody Map<String, Object> payload, Authentication authentication) {
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Date buy = null;
-		Date exp = null;
+		Date buyDate = null;
+		Date expirationDate = null;
 		try{
-			buy = formatter.parse((String)payload.get("buyDate"));
-			exp = formatter.parse((String)payload.get("expirationDate"));
+			buyDate = formatter.parse((String)payload.get("buyDate"));
+			expirationDate = formatter.parse((String)payload.get("expirationDate"));
 		}
 		catch(Exception ParseException) {
 			
 		}
 		System.out.println("New Food: " + (String)payload.get("name"));
 		System.out.println(payload);
-		Food food = fService.addFood((String)payload.get("name"), buy, exp, (String)payload.get("category"), ((User)authentication.getPrincipal()));
+		Food food = fService.addFood((String)payload.get("name"), buyDate, expirationDate, (String)payload.get("category"), ((User)authentication.getPrincipal()));
 		return food;
-		// ModelAndView mav = new ModelAndView("redirect:/");
-		// return mav;
 	}
 
+	//GET Method to get all food from user's 3 categories
 	@RequestMapping(value="/myfood", method=RequestMethod.GET)
 	@ResponseBody
 	public ArrayList<Set<Food>> getMyFood(Authentication authentication) {
@@ -75,6 +69,48 @@ public class RestController {
 		return a;
 	}
 
+	//DELETE food at id
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteFoodItem(@PathVariable Integer id) {
+		fService.deleteFood(id);
+	}
+
+	//GET food from id, used for Edit function
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public Food getAFood(@PathVariable Integer id) {
+		System.out.println("Get food from Id: "+ id);
+		Food f = fService.getFoodById(id);
+		System.out.println(f.getName());
+		System.out.println(f.getId());
+		return fService.getFoodById(id);
+	}
+
+	//Submit for Edit function, updates food at ID with new information
+	@RequestMapping(value="/myfood/{id}", method=RequestMethod.PUT)
+	@ResponseBody
+	public void changeFood(@PathVariable Integer id, @RequestBody Map<String, Object> payload) {
+		System.out.println("Change food request: " + payload);
+		Food old = fService.getFoodById(id);
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date buyDate = null;
+		Date expirationDate = null;
+		try{
+			buyDate = formatter.parse((String)payload.get("buyDate"));
+			expirationDate = formatter.parse((String)payload.get("expirationDate"));
+		}
+		catch(Exception ParseException) {
+			
+		}
+		old.setName((String)payload.get("name"));
+		old.setCategory((String)payload.get("category"));
+		old.setBuyDate(buyDate);
+		old.setExpirationDate(expirationDate);
+		fService.updateFood(old);
+	}
+
+	//returns user's username at path /myuser
 	@RequestMapping(value="/myuser", method=RequestMethod.GET)
 	@ResponseBody
 	public String currentUsername(Authentication authentication) {
@@ -102,7 +138,6 @@ public class RestController {
 
 	@PostMapping("/login")
 	public ModelAndView login(@ModelAttribute User user) {
-		System.out.println(user);
 		User authenticated = uService.authenticate(user.getUsername(), user.getPassword());
 		ModelAndView mav = new ModelAndView();
 		if(authenticated == null) {
@@ -116,7 +151,6 @@ public class RestController {
 	@PostMapping("/register")
 	public ModelAndView register(@ModelAttribute User user) {
 		System.out.println(user);
-		System.out.println("Hello?");
 		User registeredUser = uService.registerUser(user.getUsername(), user.getPassword());
 		ModelAndView mav = new ModelAndView();
 		if(registeredUser == null) {
