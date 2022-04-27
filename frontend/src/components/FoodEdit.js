@@ -7,7 +7,7 @@ import FoodService from '../services/FoodService';
 class FoodEdit extends Component {
 
     emptyItem = {
-        name: 'NO NAME',
+        name: '',
         category: 'Pantry'
     };
 
