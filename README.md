@@ -1,4 +1,7 @@
-# Continuous Deployment
+# Pantry Pal
+Smart pantry application developed using create-react-app React frontend, Spring Boot backend, and PostgresQL database.
+
+## Continuous Deployment
 
 Push to this branch automatically pushes to [site](http://therealpantrypal.herokuapp.com/). CD through GitHub Actions.
 
