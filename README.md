@@ -1,5 +1,5 @@
-# Pantry Pal
-Smart pantry application developed using create-react-app [React](https://create-react-app.dev/) frontend, Maven [Spring Boot](https://start.spring.io/) backend, and [PostgreSQL](https://www.postgresql.org/) database.
+# PantryPal
+[Smart pantry application](http://therealpantrypal.herokuapp.com/) developed using create-react-app [React](https://create-react-app.dev/) frontend, Maven [Spring Boot](https://start.spring.io/) backend, and [PostgreSQL](https://www.postgresql.org/) database.
 
 ## Continuous Deployment
 
