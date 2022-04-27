@@ -121,11 +121,11 @@ class FoodList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="18%">Name</th>
-                            <th width="18%">Buy Date</th>
-                            <th width="18%">Expiration Date</th>
+                            <th width="25%">Name</th>
+                            <th width="25%">Buy Date</th>
+                            <th width="25%">Expiration Date</th>
                             {/* <th width="18%">Calories</th> */}
-                            <th width="28%">Actions</th>
+                            <th width="25%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
